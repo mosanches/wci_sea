@@ -1,0 +1,56 @@
+# Copyright 2022 Google LLC.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: wci
+  labels:
+    cloud.googleapis.com/location: {{REGION}}
+  annotations:
+    run.googleapis.com/description: WhatsApp Conversion Import
+    run.googleapis.com/ingress: all
+spec:
+  template:
+    spec:
+      serviceAccountName: {{SERVICE_ACCOUNT}}
+      containers:
+      - image: {{REGION}}-docker.pkg.dev/{{GOOGLE_CLOUD_PROJECT}}/wci/wci:latest
+        env:
+        - name: GOOGLE_CLOUD_PROJECT
+          value: "{{GOOGLE_CLOUD_PROJECT}}"
+        - name: DATA_SOURCE_TYPE
+          value: "BIG_QUERY"
+        - name: PARTNER_TYPE
+          value: "{{PARTNER_TYPE}}"  
+        - name: BQ_DATASET_NAME
+          value: "{{BQ_DATASET_NAME}}"
+        - name: API_KEY
+          value: "{{API_KEY}}"
+        - name: PROTOCOL_MESSAGE
+          value: "{{PROTOCOL_MESSAGE}}"
+        - name: CTM_PROTOCOL_MESSAGE
+          value: "Chat ID:"
+        - name: WELCOME_MESSAGE
+          value: "{{WELCOME_MESSAGE}}"
+        - name: STATS_OPTIN
+          value: "{{STATS_OPTIN}}"
+        - name: ECL_ENABLED
+          value: "{{ECL_ENABLED}}"
+        - name: BQ_PENDING_LEAD_TABLE
+          value: "{{GOOGLE_CLOUD_PROJECT}}.{{BQ_DATASET_NAME}}.pending_leads"
+        - name: BQ_LEAD_TABLE
+          value: "{{GOOGLE_CLOUD_PROJECT}}.{{BQ_DATASET_NAME}}.leads"
+        - name: BQ_CHAT_TABLE
+          value: "{{GOOGLE_CLOUD_PROJECT}}.{{BQ_DATASET_NAME}}.chat_leads"
+      
