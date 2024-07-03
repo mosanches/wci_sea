@@ -90,28 +90,28 @@ function create_bq_dataset() {
     echo
 }
 function create_bq_tables(){
-    start_message "Creating WCI schema:chat_leads..."
+    start_message "Creating WCI schema:chat_leads1..."
     
     bq mk \
     --table \
     --description="BigQuery table for WCI" \
-    $GOOGLE_CLOUD_PROJECT:$BQ_DATASET_NAME.chat_leads \
+    $GOOGLE_CLOUD_PROJECT:$BQ_DATASET_NAME.chat_leads1 \
     sender:STRING,receiver:STRING,message:STRING,timestamp:TIMESTAMP
     echo
 
-    start_message "Creating WCI schema:pending_leads..."
+    start_message "Creating WCI schema:pending_leads1..."
     bq mk \
     --table \
     --description="BigQuery table for WCI" \
-    $GOOGLE_CLOUD_PROJECT:$BQ_DATASET_NAME.pending_leads \
+    $GOOGLE_CLOUD_PROJECT:$BQ_DATASET_NAME.pending_leads1 \
     identifier:STRING,type:STRING,protocol:STRING,mapped:JSON,timestamp:TIMESTAMP
     echo
 
-    start_message "Creating WCI schema:leads..."
+    start_message "Creating WCI schema:leads1..."
     bq mk \
     --table \
     --description="BigQuery table for WCI" \
-    $GOOGLE_CLOUD_PROJECT:$BQ_DATASET_NAME.leads \
+    $GOOGLE_CLOUD_PROJECT:$BQ_DATASET_NAME.leads1 \
     protocol:STRING,phone:STRING,timestamp:TIMESTAMP
     echo
 }
