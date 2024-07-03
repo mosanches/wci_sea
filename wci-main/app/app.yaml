@@ -48,9 +48,9 @@ spec:
         - name: ECL_ENABLED
           value: "{{ECL_ENABLED}}"
         - name: BQ_PENDING_LEAD_TABLE
-          value: "{{GOOGLE_CLOUD_PROJECT}}.{{BQ_DATASET_NAME}}.pending_leads"
+          value: "{{GOOGLE_CLOUD_PROJECT}}.{{BQ_DATASET_NAME}}.pending_leads1"
         - name: BQ_LEAD_TABLE
-          value: "{{GOOGLE_CLOUD_PROJECT}}.{{BQ_DATASET_NAME}}.leads"
+          value: "{{GOOGLE_CLOUD_PROJECT}}.{{BQ_DATASET_NAME}}.leads1"
         - name: BQ_CHAT_TABLE
-          value: "{{GOOGLE_CLOUD_PROJECT}}.{{BQ_DATASET_NAME}}.chat_leads"
+          value: "{{GOOGLE_CLOUD_PROJECT}}.{{BQ_DATASET_NAME}}.chat_leads1"
       
